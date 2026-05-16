@@ -227,7 +227,7 @@
             </div>
             
             <div id="courseManageList"></div>
-            <div style="text-align:center; color:#555; font-size:0.75rem; margin-top:15px; margin-bottom:5px;" class="mono-font">v2.3.0 - Safe Load Edition</div>
+            <div style="text-align:center; color:#555; font-size:0.75rem; margin-top:15px; margin-bottom:5px;" class="mono-font">v2.4.0 - Ultra Safe Load Edition</div>
             <button class="close-btn" onclick="closeModal('manageModal')">CLOSE</button>
         </div>
     </div>
@@ -270,21 +270,31 @@
             db: [], history: [], xp: 0, musicOn: false
         };
 
-        // --- MIGRATION: Fix 04:00 AM constraint for old saves ---
-        let needsMigration = false;
-        state.db.forEach(item => {
-            item.tasks.forEach(t => {
-                const d = new Date(t.date);
-                if (d.getHours() !== 4 || d.getMinutes() !== 0 || d.getSeconds() !== 0) {
-                    d.setHours(4, 0, 0, 0);
-                    t.date = d.toISOString();
-                    needsMigration = true;
-                }
+        // --- SAFE MIGRATION: Handles both 'date' and 'targetDate' without crashing ---
+        const runMigration = () => {
+            let needsMigration = false;
+            state.db.forEach(item => {
+                item.tasks.forEach(t => {
+                    const dateStr = t.date || t.targetDate; // Handle old and new formats
+                    if (dateStr) {
+                        const d = new Date(dateStr);
+                        if (!isNaN(d.getTime())) { // Prevent Invalid Date crashes
+                            if (d.getHours() !== 4 || d.getMinutes() !== 0 || d.getSeconds() !== 0 || t.targetDate) {
+                                d.setHours(4, 0, 0, 0);
+                                t.date = d.toISOString();
+                                if(t.targetDate) delete t.targetDate; // Clean up old key
+                                needsMigration = true;
+                            }
+                        }
+                    }
+                });
             });
-        });
-        if (needsMigration) {
-            localStorage.setItem(DB_KEY, JSON.stringify(state));
-        }
+            if (needsMigration) {
+                localStorage.setItem(DB_KEY, JSON.stringify(state));
+            }
+        };
+        // Run migration immediately on startup
+        runMigration();
 
         // --- AUDIO ENGINE ---
         let audioCtx = null;
@@ -344,6 +354,7 @@
         // 04:00 AM CALCULATION
         function getTarget4AM(daysForward) {
             let d = new Date();
+            // If before 04:00 AM, treat it as the previous day.
             if (d.getHours() < 4) d.setDate(d.getDate() - 1);
             d.setDate(d.getDate() + daysForward);
             d.setHours(4, 0, 0, 0);
@@ -453,13 +464,14 @@
         const delCourse = (k) => { if(confirm('Delete?')) { delete state.courses[k]; save(); openModal('manageModal'); } };
         const exportData = () => { const code = btoa(encodeURIComponent(JSON.stringify(state))); const t = document.createElement("textarea"); document.body.appendChild(t); t.value=code; t.select(); document.execCommand("copy"); document.body.removeChild(t); alert("Crystal Copied!"); };
         
-        // --- IMPROVED IMPORT FUNCTION ---
+        // --- ULTRA SAFE IMPORT FUNCTION ---
         const importData = () => { 
             const input = prompt("Paste Crystal Code here:");
             if (!input) return;
             try { 
                 const parsed = JSON.parse(decodeURIComponent(atob(input.trim())));
-                state = { ...state, ...parsed }; // Merges old save structure with new state structure seamlessly
+                state = { ...state, ...parsed }; // Merge new structures
+                runMigration(); // Immediately fix all broken date formats before reload
                 save(); 
                 alert("Data Crystal loaded successfully! 🐲");
                 location.reload(); 
