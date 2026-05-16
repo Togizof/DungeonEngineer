@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="theme-color" content="#050507">
     
-    <!-- PWA & MOBILE SETTINGS -->
+    <!-- PWA & MOBİL AYARLAR -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="DungeonEng">
+    <meta name="apple-mobile-web-app-title" content="ZindanMüh">
     
     <!-- MANIFEST -->
-    <link rel="manifest" href='data:application/json;charset=utf-8,%7B%22name%22%3A%22Dungeon%20Engineer%22%2C%22short_name%22%3A%22Dungeon%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23050507%22%2C%22theme_color%22%3A%22%23050507%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F3421%2F3421110.png%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D'>
+    <link rel="manifest" href='data:application/json;charset=utf-8,%7B%22name%22%3A%22M%C3%BChendislik%20Zindan%C4%B1%22%2C%22short_name%22%3A%22Zindan%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23050507%22%2C%22theme_color%22%3A%22%23050507%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F3421%2F3421110.png%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D'>
 
-    <title>Dungeon Engineer: God Mode</title>
+    <title>Dungeon Engineer: Dynamic Edition</title>
     
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     
@@ -38,7 +38,7 @@
             user-select: none;
         }
 
-        /* --- ATMOSPHERE --- */
+        /* --- ATMOSFER --- */
         .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; }
         .bg-grid {
             background-size: 50px 50px;
@@ -135,7 +135,7 @@
 
         .section-header { margin: 25px 0 15px; font-size: 1.3rem; color: var(--gold); display: flex; align-items: center; gap: 10px; }
         
-        /* GRIMOIRE STYLES & PARTICLES */
+        /* GRIMOIRE STYLES */
         .grimoire-entry {
             background: linear-gradient(135deg, rgba(251, 191, 36, 0.05), transparent);
             border: 1px solid var(--gold); padding: 15px; border-radius: 12px; margin-bottom: 12px;
@@ -147,19 +147,9 @@
             background: var(--gold); color: black; font-size: 0.6rem; font-weight: 900;
             padding: 2px 25px; transform: rotate(45deg);
         }
-        .grimoire-info { display: flex; flex-direction: column; gap: 4px; z-index: 2; }
+        .grimoire-info { display: flex; flex-direction: column; gap: 4px; }
         .grimoire-title { color: white; font-weight: bold; font-size: 1.1rem; }
         .grimoire-meta { color: var(--gold); font-size: 0.7rem; font-family: 'JetBrains Mono'; }
-
-        .g-particle {
-            position: absolute; width: 4px; height: 4px; background: var(--gold); border-radius: 50%;
-            animation: floatG 3s infinite ease-in-out; opacity: 0; pointer-events: none; z-index: 1;
-        }
-        @keyframes floatG {
-            0% { transform: translate(0, 0) scale(0.5); opacity: 0; }
-            50% { opacity: 0.8; }
-            100% { transform: translate(15px, -30px) scale(1.2); opacity: 0; }
-        }
 
         .log-entry { font-size: 0.8rem; padding: 10px; border-bottom: 1px solid #222; display: flex; justify-content: space-between; color: #888; }
         .floater { position: fixed; pointer-events: none; font-weight: 900; font-size: 1.8rem; z-index: 1000; animation: floatUpText 0.8s steps(8) forwards; color: var(--gold); text-shadow: 2px 2px 0px #000; }
@@ -177,64 +167,64 @@
         <div class="hud-avatar" id="avatar" onclick="initAudioContext(); playSfx('summon')">🧙‍♂️</div>
         <div class="xp-container">
             <div class="xp-header">
-                <span id="rankLabel" class="xp-rank rpg-font">Lost Intern</span>
+                <span id="rankLabel" class="xp-rank rpg-font">Kayıp Stajyer</span>
                 <span class="xp-val mono-font"><span id="xpLabel">0</span> XP</span>
             </div>
             <div class="xp-track"><div id="xpFill" class="xp-fill"></div></div>
         </div>
         <div class="hud-btns">
-            <button class="circle-btn" id="bgmBtn" onclick="toggleBGM()" title="Music">🎵</button>
+            <button class="circle-btn" id="bgmBtn" onclick="toggleBGM()" title="Müzik">🎵</button>
             <button class="circle-btn" onclick="openModal('grimoireModal')" title="Grimoire">📔</button>
-            <button class="circle-btn" onclick="openModal('rankModal')" title="Ranks">❓</button>
-            <button class="circle-btn" onclick="openModal('manageModal')" title="Settings">⚙️</button>
-            <button class="circle-btn" onclick="openModal('saveModal')" title="Backup">💾</button>
+            <button class="circle-btn" onclick="openModal('rankModal')" title="Rütbeler">❓</button>
+            <button class="circle-btn" onclick="openModal('manageModal')" title="Ayarlar">⚙️</button>
+            <button class="circle-btn" onclick="openModal('saveModal')" title="Yedek">💾</button>
         </div>
     </div>
 
     <div class="main-grid">
         <div class="left-col">
-            <h3 class="section-header rpg-font">🛡️ Active Quests</h3>
+            <h3 class="section-header rpg-font">🛡️ Aktif Questler</h3>
             <div id="questList"></div>
-            <div id="emptyState" style="text-align:center; padding:50px; color:#444; font-style:italic;">"No active quests today. The dungeon is peaceful..."</div>
+            <div id="emptyState" style="text-align:center; padding:50px; color:#444; font-style:italic;">"Zindanda sessizlik hakim..."</div>
         </div>
         <div class="right-col">
-            <h3 class="section-header rpg-font">🧬 Skill Tree</h3>
+            <h3 class="section-header rpg-font">🧬 Yetenek Ağacı</h3>
             <div id="skillList"></div>
         </div>
     </div>
 
     <!-- MODALS -->
-    <div id="grimoireModal" class="modal-overlay"><div class="modal-content"><h2 class="rpg-font" style="color:var(--gold); text-align:center;">📔 Grimoire</h2><p style="text-align:center; color:#666; font-size:0.75rem; margin-bottom:20px;">Mastered legendary skills are sealed here.</p><div id="grimoireLog"></div><button class="close-btn" onclick="closeModal('grimoireModal')">CLOSE</button></div></div>
+    <div id="grimoireModal" class="modal-overlay"><div class="modal-content"><h2 class="rpg-font" style="color:var(--gold); text-align:center;">📔 Grimoire</h2><p style="text-align:center; color:#666; font-size:0.75rem; margin-bottom:20px;">Henüz Grimoire'a girecek kadar görkemli bir büyü öğrenilmedi...</p><div id="grimoireLog"></div><button class="close-btn" onclick="closeModal('grimoireModal')">KAPAT</button></div></div>
     
-    <div id="rankModal" class="modal-overlay"><div class="modal-content"><h2 class="rpg-font" style="color:var(--gold)">Rank Scale</h2><div id="rankTable" style="margin-top:15px;"></div><button class="close-btn" onclick="closeModal('rankModal')">CLOSE</button></div></div>
+    <div id="rankModal" class="modal-overlay"><div class="modal-content"><h2 class="rpg-font" style="color:var(--gold)">Rütbe Skalası</h2><div id="rankTable" style="margin-top:15px;"></div><button class="close-btn" onclick="closeModal('rankModal')">KAPAT</button></div></div>
     
     <div id="manageModal" class="modal-overlay">
         <div class="modal-content">
-            <h2 class="rpg-font" style="color:var(--gold); margin-bottom: 15px;">Dungeon Settings</h2>
+            <h2 class="rpg-font" style="color:var(--gold); margin-bottom: 15px;">Zindan Ayarları</h2>
             
             <div class="summon-scroll" style="margin-bottom: 15px; padding: 15px; box-shadow: none;">
-                <div style="font-size:0.75rem; color:#888; margin-bottom:10px; letter-spacing:1px; font-weight:bold;">[ NEW SKILL SCROLL ]</div>
+                <div style="font-size:0.75rem; color:#888; margin-bottom:10px; letter-spacing:1px; font-weight:bold;">[ YENİ YETENEK PARŞÖMENİ ]</div>
                 <select id="courseSelect" class="mono-font"></select>
-                <input type="text" id="topicInput" placeholder="Skill Name..." autocomplete="off">
-                <button class="btn-summon rpg-font" onclick="addTopic(); closeModal('manageModal')"><span>📜</span> OPEN SCROLL</button>
+                <input type="text" id="topicInput" placeholder="Yetenek Adı..." autocomplete="off">
+                <button class="btn-summon rpg-font" onclick="addTopic(); closeModal('manageModal')"><span>📜</span> PARŞÖMENİ AÇ</button>
             </div>
 
             <div style="background:rgba(255,255,255,0.03); padding:15px; border-radius:12px; margin:15px 0; border: 1px solid #333;">
-                <div style="font-size:0.75rem; color:#888; margin-bottom:10px; letter-spacing:1px; font-weight:bold;">[ DEFINE NEW COURSE ]</div>
-                <input type="text" id="newC_Name" placeholder="Course Name (e.g. Physics II)">
-                <input type="text" id="newC_Emoji" placeholder="Emoji (e.g. 🧪)">
-                <button class="btn-summon" style="padding:10px" onclick="addNewCourse()">ADD</button>
+                <div style="font-size:0.75rem; color:#888; margin-bottom:10px; letter-spacing:1px; font-weight:bold;">[ YENİ DERS TANIMLA ]</div>
+                <input type="text" id="newC_Name" placeholder="Ders İsmi">
+                <input type="text" id="newC_Emoji" placeholder="Emoji">
+                <button class="btn-summon" style="padding:10px" onclick="addNewCourse()">EKLE</button>
             </div>
             
             <div id="courseManageList"></div>
-            <div style="text-align:center; color:#555; font-size:0.75rem; margin-top:15px; margin-bottom:5px;" class="mono-font">v2.4.0 - Ultra Safe Load Edition</div>
-            <button class="close-btn" onclick="closeModal('manageModal')">CLOSE</button>
+            <div style="text-align:center; color:#555; font-size:0.75rem; margin-top:15px; margin-bottom:5px;" class="mono-font">v2.1.0 - 04:00 AM Reset</div>
+            <button class="close-btn" onclick="closeModal('manageModal')">KAPAT</button>
         </div>
     </div>
     
-    <div id="saveModal" class="modal-overlay"><div class="modal-content" style="text-align:center;"><h2 class="rpg-font" style="color:var(--gold)">Data Crystal</h2><p style="margin:15px 0; color:#888; font-size:0.9rem;">Backup your dungeon data.</p><button class="btn-finish" style="border-color:var(--accent); color:var(--accent); margin-bottom:12px;" onclick="exportData()">💎 COPY CRYSTAL</button><button class="btn-finish" style="border-color:var(--druid); color:var(--druid);" onclick="importData()">📥 LOAD CRYSTAL</button><button class="close-btn" onclick="closeModal('saveModal')">CLOSE</button></div></div>
+    <div id="saveModal" class="modal-overlay"><div class="modal-content" style="text-align:center;"><h2 class="rpg-font" style="color:var(--gold)">Veri Kristali</h2><p style="margin:15px 0; color:#888; font-size:0.9rem;">Zindan verilerini yedekle.</p><button class="btn-finish" style="border-color:var(--accent); color:var(--accent); margin-bottom:12px;" onclick="exportData()">💎 KRİSTALİ KOPYALA</button><button class="btn-finish" style="border-color:var(--druid); color:var(--druid);" onclick="importData()">📥 KRİSTAL YÜKLE</button><button class="close-btn" onclick="closeModal('saveModal')">KAPAT</button></div></div>
     
-    <div id="levelModal" class="modal-overlay"><div class="modal-content" style="text-align:center; border: 4px solid var(--gold);"><div style="font-size:5rem">🏆</div><h1 class="rpg-font" style="color:var(--gold)">PROMOTED!</h1><p id="newLvl" class="rpg-font" style="font-size:1.5rem; color:white; margin-top:10px;"></p><button class="close-btn" style="background:var(--gold); color:black;" onclick="closeModal('levelModal')">CONTINUE</button></div></div>
+    <div id="levelModal" class="modal-overlay"><div class="modal-content" style="text-align:center; border: 4px solid var(--gold);"><div style="font-size:5rem">🏆</div><h1 class="rpg-font" style="color:var(--gold)">TERFİ ALDIN!</h1><p id="newLvl" class="rpg-font" style="font-size:1.5rem; color:white; margin-top:10px;"></p><button class="close-btn" style="background:var(--gold); color:black;" onclick="closeModal('levelModal')">DEVAM ET</button></div></div>
 
     <script>
         // --- SERVICE WORKER ---
@@ -244,57 +234,48 @@
             navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(() => {});
         }
 
-        const DB_KEY = 'dungeon_v7_global';
+        const DB_KEY = 'dungeon_v6_dynamic';
         const RANKS = [
-            { name: "Lost Intern", min: 0, max: 1000, icon: "🧙‍♂️" },
-            { name: "Code Apprentice", min: 1000, max: 3000, icon: "📜" },
-            { name: "System Warrior", min: 3000, max: 7000, icon: "⚔️" },
-            { name: "Algorithm Alchemist", min: 7000, max: 15000, icon: "🧪" },
-            { name: "Data Guardian", min: 15000, max: 25000, icon: "🛡️" },
-            { name: "Cyber Knight", min: 25000, max: 45000, icon: "🗡️" },
-            { name: "Mechanic Mage", min: 45000, max: 70000, icon: "⚙️" },
-            { name: "Quantum Master", min: 70000, max: 110000, icon: "🌌" },
-            { name: "Dragon Engineer", min: 110000, max: 9999999, icon: "🐲" }
+            { name: "Kayıp Stajyer", min: 0, max: 1000, icon: "🧙‍♂️" },
+            { name: "Kod Çırağı", min: 1000, max: 3000, icon: "📜" },
+            { name: "Sistem Savaşçısı", min: 3000, max: 7000, icon: "⚔️" },
+            { name: "Algoritma Simyacısı", min: 7000, max: 15000, icon: "🧪" },
+            { name: "Veri Muhafızı", min: 15000, max: 25000, icon: "🛡️" },
+            { name: "Siber Şövalye", min: 25000, max: 45000, icon: "🗡️" },
+            { name: "Mekanik Büyücü", min: 45000, max: 70000, icon: "⚙️" },
+            { name: "Kuantum Üstadı", min: 70000, max: 110000, icon: "🌌" },
+            { name: "Ejder Mühendis", min: 110000, max: 9999999, icon: "🐲" }
         ];
 
         const PROTOCOL = [
-            { d: 1, i: "📖", t: "FlashSpell", desc: "Anki Entry & Reading", xp: 150 },
-            { d: 3, i: "⚔️", t: "DRILL", desc: "Solve 3 Basic Problems", xp: 250 },
-            { d: 7, i: "🧠", t: "FEYNMAN", desc: "Explain the Concept", xp: 450 },
-            { d: 14, i: "🐲", t: "BOSS RAID", desc: "Hunt Hard Problems", xp: 800 },
-            { d: 30, i: "👑", t: "LEGEND", desc: "Mixed Test & Mastery", xp: 1500 }
+            { d: 1, i: "📖", t: "FlashSpell", desc: "Anki Girişi & Okuma", xp: 150 },
+            { d: 3, i: "⚔️", t: "TALİM", desc: "3 Temel Soru Çöz", xp: 250 },
+            { d: 7, i: "🧠", t: "FEYNMAN", desc: "Konuyu Birine Anlat", xp: 450 },
+            { d: 14, i: "🐲", t: "BOSS RAID", desc: "Zor Soruları Avla", xp: 800 },
+            { d: 30, i: "👑", t: "LEGEND", desc: "Karışık Test & Ustalık", xp: 1500 }
         ];
 
         let state = JSON.parse(localStorage.getItem(DB_KEY)) || {
-            courses: { 'MAT2062': { n: 'Differential Eq', e: '⚔️' } },
+            courses: { 'MAT2062': { n: 'Diferansiyel', e: '⚔️' } },
             db: [], history: [], xp: 0, musicOn: false
         };
 
-        // --- SAFE MIGRATION: Handles both 'date' and 'targetDate' without crashing ---
-        const runMigration = () => {
-            let needsMigration = false;
-            state.db.forEach(item => {
-                item.tasks.forEach(t => {
-                    const dateStr = t.date || t.targetDate; // Handle old and new formats
-                    if (dateStr) {
-                        const d = new Date(dateStr);
-                        if (!isNaN(d.getTime())) { // Prevent Invalid Date crashes
-                            if (d.getHours() !== 4 || d.getMinutes() !== 0 || d.getSeconds() !== 0 || t.targetDate) {
-                                d.setHours(4, 0, 0, 0);
-                                t.date = d.toISOString();
-                                if(t.targetDate) delete t.targetDate; // Clean up old key
-                                needsMigration = true;
-                            }
-                        }
-                    }
-                });
+        // --- GÖÇ (MIGRATION) İŞLEMİ: Eski kayıtları yeni 04:00 AM düzenine sabitle ---
+        let needsMigration = false;
+        state.db.forEach(item => {
+            item.tasks.forEach(t => {
+                const d = new Date(t.date);
+                // Eğer saat tam olarak 04:00:00 değilse, eski sistemle oluşturulmuştur. Onları düzelt!
+                if (d.getHours() !== 4 || d.getMinutes() !== 0 || d.getSeconds() !== 0) {
+                    d.setHours(4, 0, 0, 0);
+                    t.date = d.toISOString();
+                    needsMigration = true;
+                }
             });
-            if (needsMigration) {
-                localStorage.setItem(DB_KEY, JSON.stringify(state));
-            }
-        };
-        // Run migration immediately on startup
-        runMigration();
+        });
+        if (needsMigration) {
+            localStorage.setItem(DB_KEY, JSON.stringify(state));
+        }
 
         // --- AUDIO ENGINE ---
         let audioCtx = null;
@@ -351,10 +332,10 @@
         const save = () => { localStorage.setItem(DB_KEY, JSON.stringify(state)); render(); };
         const getRank = () => RANKS.find(r => state.xp >= r.min && state.xp < r.max) || RANKS[RANKS.length-1];
 
-        // 04:00 AM CALCULATION
+        // 04:00 AM HESAPLAMA FONKSİYONU
         function getTarget4AM(daysForward) {
             let d = new Date();
-            // If before 04:00 AM, treat it as the previous day.
+            // Gece 00:00 ile 03:59 arasıysa, bunu Anki mantığıyla "dün" olarak say
             if (d.getHours() < 4) d.setDate(d.getDate() - 1);
             d.setDate(d.getDate() + daysForward);
             d.setHours(4, 0, 0, 0);
@@ -364,6 +345,7 @@
         function addTopic() {
             const c = document.getElementById('courseSelect').value, t = document.getElementById('topicInput').value.trim();
             if(!t) return; playSfx('summon');
+            // Yeni görevler tam olarak 04:00'a sabitlendi
             state.db.unshift({ id: Date.now(), c, t, tasks: PROTOCOL.map(p => ({ ...p, done: false, date: getTarget4AM(p.d).toISOString() })) });
             document.getElementById('topicInput').value=''; save();
         }
@@ -372,7 +354,7 @@
             const item = state.db.find(i => i.id === id); if(!item) return;
             const oldR = getRank().name, gain = item.tasks[idx].xp;
             
-            // DYNAMIC TIME SHIFT (Maintaining 04:00 AM logic)
+            // DİNAMİK ZAMAN KAYDIRMA (04:00 AM MANTIĞIYLA)
             const now = new Date();
             const targetDate = new Date(item.tasks[idx].date);
             
@@ -388,6 +370,7 @@
             const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
 
             if (diffDays > 0) {
+                // Eğer görev gecikmeli yapıldıysa, gelecekteki görevleri ötele (04:00 bozulmadan kalır)
                 for (let k = idx + 1; k < item.tasks.length; k++) {
                     const oldFutureDate = new Date(item.tasks[k].date);
                     oldFutureDate.setDate(oldFutureDate.getDate() + diffDays);
@@ -403,22 +386,6 @@
             setTimeout(()=>f.remove(),800);
             if(getRank().name !== oldR) { document.getElementById('newLvl').innerText=getRank().name; openModal('levelModal'); }
             save();
-        }
-
-        // UNDO FUNCTION
-        function undoQuest(id) {
-            if(!confirm("Undo the last completed quest for this skill?")) return;
-            const item = state.db.find(i => i.id === id); if(!item) return;
-            
-            let lastIdx = -1;
-            for(let i=item.tasks.length-1; i>=0; i--) {
-                if(item.tasks[i].done) { lastIdx = i; break; }
-            }
-            if(lastIdx !== -1) {
-                item.tasks[lastIdx].done = false;
-                state.xp = Math.max(0, state.xp - item.tasks[lastIdx].xp);
-                save();
-            }
         }
 
         function addNewCourse() {
@@ -441,16 +408,12 @@
                 const mastered = state.db.filter(item => item.tasks.every(t => t.done));
                 
                 if(mastered.length === 0) { 
-                    l.innerHTML = '<p style="text-align:center; color:gray; font-style:italic; padding:20px;">No spell glorious enough to enter the Grimoire has been mastered yet...</p>'; 
+                    l.innerHTML = '<p style="text-align:center; color:gray; font-style:italic; padding:20px;">Henüz Grimoire\'a girecek kadar görkemli bir büyü öğrenilmedi...</p>'; 
                 } else {
                     l.innerHTML = '';
                     mastered.forEach(mItem => {
                         const cData = state.courses[mItem.c] || {n:mItem.c, e:'📜'};
-                        let parts = '';
-                        for(let i=0; i<6; i++) {
-                            parts += `<div class="g-particle" style="left:${Math.random()*90+5}%; bottom:${Math.random()*20}%; animation-delay:${Math.random()*3}s"></div>`;
-                        }
-                        l.innerHTML += `<div class="grimoire-entry">${parts}<div class="grimoire-info"><div class="grimoire-title">${mItem.t}</div><div class="grimoire-meta">${cData.e} ${cData.n}</div></div><div style="font-size:1.5rem">🏆</div></div>`;
+                        l.innerHTML += `<div class="grimoire-entry"><div class="grimoire-info"><div class="grimoire-title">${mItem.t}</div><div class="grimoire-meta">${cData.e} ${cData.n}</div></div><div style="font-size:1.5rem">🏆</div></div>`;
                     });
                 }
             } else if(id==='manageModal') {
@@ -461,25 +424,9 @@
         }
 
         const closeModal = (id) => document.getElementById(id).style.display='none';
-        const delCourse = (k) => { if(confirm('Delete?')) { delete state.courses[k]; save(); openModal('manageModal'); } };
-        const exportData = () => { const code = btoa(encodeURIComponent(JSON.stringify(state))); const t = document.createElement("textarea"); document.body.appendChild(t); t.value=code; t.select(); document.execCommand("copy"); document.body.removeChild(t); alert("Crystal Copied!"); };
-        
-        // --- ULTRA SAFE IMPORT FUNCTION ---
-        const importData = () => { 
-            const input = prompt("Paste Crystal Code here:");
-            if (!input) return;
-            try { 
-                const parsed = JSON.parse(decodeURIComponent(atob(input.trim())));
-                state = { ...state, ...parsed }; // Merge new structures
-                runMigration(); // Immediately fix all broken date formats before reload
-                save(); 
-                alert("Data Crystal loaded successfully! 🐲");
-                location.reload(); 
-            } catch(e) {
-                console.error(e);
-                alert("Error: Invalid Crystal Code! Please make sure you copied the entire code without missing any characters.");
-            } 
-        };
+        const delCourse = (k) => { if(confirm('Silinsin mi?')) { delete state.courses[k]; save(); openModal('manageModal'); } };
+        const exportData = () => { const code = btoa(encodeURIComponent(JSON.stringify(state))); const t = document.createElement("textarea"); document.body.appendChild(t); t.value=code; t.select(); document.execCommand("copy"); document.body.removeChild(t); alert("Kristal Kopyalandı!"); };
+        const importData = () => { try { state=JSON.parse(decodeURIComponent(atob(prompt("Kodu Yapıştır:")))); save(); location.reload(); } catch(e){alert("Hata!");} };
 
         function render() {
             const r = getRank(); document.getElementById('rankLabel').innerText = r.name; document.getElementById('avatar').innerText = r.icon;
@@ -489,17 +436,20 @@
             for(let k in state.courses) sel.innerHTML+=`<option value="${k}">${state.courses[k].n}</option>`;
             
             const ql = document.getElementById('questList'); ql.innerHTML=''; let count=0; 
-            const now = new Date();
+            const now = new Date(); // Anlık saatle kıyaslanacak
             
             state.db.forEach(item => {
                 const cData = state.courses[item.c] || {n:item.c, e:'📜'};
+                
+                // YIĞILMA (STACKING) ÖNLEME: Sadece yapılmamış İLK görevi bul
                 const nextTaskIdx = item.tasks.findIndex(t => !t.done);
                 
                 if (nextTaskIdx !== -1) {
                     const t = item.tasks[nextTaskIdx];
+                    // Eğer hedef tarih (04:00 AM) şu anki saatten küçük veya eşitse göster
                     if (new Date(t.date) <= now) {
                         count++; 
-                        ql.innerHTML += `<div class="quest-card"><div class="q-stripe" style="background:var(--accent)"></div><div class="q-body"><div class="q-meta"><span>${cData.e} ${cData.n}</span><span style="color:var(--gold)">+${t.xp} XP</span></div><div class="q-title rpg-font">${item.t}</div><div class="obj-box"><span>${t.i}</span><div><div style="font-weight:bold; font-size:0.85rem; color:var(--accent);">${t.t}</div><div style="font-size:0.75rem; color:#888;">${t.desc}</div></div></div><button class="btn-finish rpg-font" onclick="completeQuest(event,${item.id},${nextTaskIdx})">⚔️ COMPLETE QUEST</button></div></div>`;
+                        ql.innerHTML += `<div class="quest-card"><div class="q-stripe" style="background:var(--accent)"></div><div class="q-body"><div class="q-meta"><span>${cData.e} ${cData.n}</span><span style="color:var(--gold)">+${t.xp} XP</span></div><div class="q-title rpg-font">${item.t}</div><div class="obj-box"><span>${t.i}</span><div><div style="font-weight:bold; font-size:0.85rem; color:var(--accent);">${t.t}</div><div style="font-size:0.75rem; color:#888;">${t.desc}</div></div></div><button class="btn-finish rpg-font" onclick="completeQuest(event,${item.id},${nextTaskIdx})">⚔️ QUESTİ BİTİR</button></div></div>`;
                     }
                 }
             });
@@ -509,11 +459,10 @@
             state.db.forEach(item => {
                 const cData = state.courses[item.c] || {n:item.c, e:'📜'};
                 const pct = (item.tasks.filter(t=>t.done).length/5)*100;
-                const undoBtnHtml = pct > 0 ? `<button style="border:none;background:none;color:var(--gold);opacity:0.8;font-size:1.4rem;cursor:pointer;margin-right:5px;" onclick="undoQuest(${item.id})" title="Undo Last Quest">↺</button>` : '';
-
-                sl.innerHTML += `<div class="skill-item" style="${pct === 100 ? 'opacity:0.5; border-color:var(--gold);' : ''}"><div style="display:flex;align-items:center;gap:12px;flex:1"><div style="font-size:1.8rem">${pct === 100 ? '📔' : cData.e}</div><div><div style="font-weight:bold;color:#fff;font-size:1rem">${item.t}</div><div style="font-size:0.7rem;color:var(--accent);font-weight:bold" class="mono-font">${cData.n}</div></div></div><div style="display:flex;align-items:center;gap:8px"><div class="ring-container"><svg width="46" height="46"><circle stroke="#222" stroke-width="4" fill="transparent" r="20" cx="23" cy="23"/><circle stroke="${pct === 100 ? 'var(--gold)' : 'var(--accent)'}" stroke-width="4" fill="transparent" r="20" cx="23" cy="23" style="stroke-dasharray:126; stroke-dashoffset:${126-(pct/100)*126}; transition:1s steps(10)"/></svg><div class="ring-text mono-font" style="color:${pct === 100 ? 'var(--gold)' : 'white'}">%${Math.round(pct)}</div></div>${undoBtnHtml}<button style="border:none;background:none;color:red;opacity:0.3;font-size:1.2rem;cursor:pointer" onclick="if(confirm('Delete?')){state.db=state.db.filter(i=>i.id!==${item.id});save()}" title="Delete Skill">🗑️</button></div></div>`;
+                sl.innerHTML += `<div class="skill-item" style="${pct === 100 ? 'opacity:0.5; border-color:var(--gold);' : ''}"><div style="display:flex;align-items:center;gap:12px;flex:1"><div style="font-size:1.8rem">${pct === 100 ? '📔' : cData.e}</div><div><div style="font-weight:bold;color:#fff;font-size:1rem">${item.t}</div><div style="font-size:0.7rem;color:var(--accent);font-weight:bold" class="mono-font">${cData.n}</div></div></div><div style="display:flex;align-items:center;gap:12px"><div class="ring-container"><svg width="46" height="46"><circle stroke="#222" stroke-width="4" fill="transparent" r="20" cx="23" cy="23"/><circle stroke="${pct === 100 ? 'var(--gold)' : 'var(--accent)'}" stroke-width="4" fill="transparent" r="20" cx="23" cy="23" style="stroke-dasharray:126; stroke-dashoffset:${126-(pct/100)*126}; transition:1s steps(10)"/></svg><div class="ring-text mono-font" style="color:${pct === 100 ? 'var(--gold)' : 'white'}">%${Math.round(pct)}</div></div><button style="border:none;background:none;color:red;opacity:0.3;font-size:1.2rem;cursor:pointer" onclick="if(confirm('Sil?')){state.db=state.db.filter(i=>i.id!==${item.id});save()}">🗑️</button></div></div>`;
             });
 
+            // Müzik Butonu Durumu
             const bgmBtn = document.getElementById('bgmBtn');
             if(state.musicOn) bgmBtn.classList.add('active');
             else bgmBtn.classList.remove('active');
