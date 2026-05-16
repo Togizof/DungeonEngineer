@@ -1,69 +1,69 @@
-🐲 Dungeon Engineer
+🐲 Dungeon Engineer: Mastery Protocol
 
-Mühendislik Zindanı, vize ve finalleri birer canavar, karmaşık formülleri ise birer büyü olarak gören Ejder Mühendisler için tasarlandı! Bu sistem, mühendislik konularını sadece okuyup geçmek yerine, onları 30 günlük bilimsel bir "Mastery Protocol" (Ustalık Protokolü) ile zihnine ebediyen mühürlemeni sağlayan bir RPG ekosistemidir.
+Dungeon Engineer is an RPG-driven learning ecosystem specifically crafted for engineering students who view midterms as monsters and complex formulas as spells. Instead of passively reading textbooks, this system utilizes a scientifically-backed 30-day "Mastery Protocol" to permanently seal engineering concepts into your long-term memory.
 
-🛡️ Bilginin Gizli Gücü (Metodoloji)
+🛡️ The Hidden Power of Knowledge (Methodology)
 
-Zindanımız rastgele çalışmaz; gücünü başarısı kanıtlanmış üç kadim bilişsel teknikten alır:
+The dungeon does not rely on luck; its core engine is powered by three proven cognitive science techniques:
 
-Active Recall (Aktif Hatırlama): Bilgiyi pasifçe okumayı bırak! Zihnini kınından çıkar ve o bilgiyi hafızandan zorla geri çağırarak nöral bağlarını güçlendir.
+Active Recall: Draw your mental blade! Stop passively re-reading notes. Force your brain to retrieve information from memory to actively strengthen your neural pathways.
 
-Spaced Repetition (Aralıklı Tekrar): Unutma canavarı tam sana saldıracakken (1, 3, 7, 14 ve 30. günlerde) araya girerek bilgiyi taze tutmanı sağlarız.
+Spaced Repetition: Intercept the "Forgetting Curve" monster right before it strikes. By revisiting the material at strategic intervals (Days 1, 3, 7, 14, and 30), your knowledge remains razor-sharp.
 
-Feynman Tekniği: Bir konuyu bir ejderhaya anlatır gibi en basit haliyle açıklayamıyorsan, o büyüyü henüz tam öğrenememişsin demektir.
+Feynman Technique: If you cannot explain a concept simply enough for a dragon to understand, you haven't truly mastered the spell.
 
-⚔️ 5 Kadim Protokol Aşaması
+⚔️ The 5 Ancient Protocol Stages
 
-Zindana bir "Yetenek" (Konu) eklediğinde, şu görevler sırayla zindan kapısında belirecektir:
+When you summon a new "Skill" (Subject) to the dungeon, the following quests will sequentially appear at your gates:
 
-📖 FLASHSPELL (1. Gün): Konuyla ilk temas. Temel kavramları Anki/Flashcard sistemine işle ve büyünün ilk tohumlarını at.
+📖 FLASHSPELL (Day 1): First Contact. Extract the core concepts, constants, and formulas into your Anki/Flashcard system. Plant the initial seeds of your spell.
 
-⚔️ TALİM (3. Gün): Zihin kılıcını bileyle. Notlara bakmadan en az 3 temel soruyu kendi başına avla!
+⚔️ DRILL (Day 3): Sharpen the Blade. Solve at least 3 fundamental/mid-level problems purely from memory, without looking at your notes.
 
-🧠 FEYNMAN (7. Gün): Büyüyü ustalaştır. Konuyu boş bir kağıda şematize et ve sanki bir sınıfa anlatıyormuş gibi sesli olarak açıkla.
+🧠 FEYNMAN (Day 7): Spell Mastery. Take a blank sheet of paper, sketch the concept, and explain it out loud as if you were teaching a class. Find your weak points.
 
-🐲 BOSS RAID (14. Gün): Gerçek canavarlarla yüzleş. Vize/Final ayarındaki en zor çıkmış soruları tek başına dize getir.
+🐲 BOSS RAID (Day 14): The Real Encounter. Confront past midterm/final exams or high-difficulty problems under time pressure.
 
-👑 LEGEND (30. Gün): Karışık testlerle konuyu hafızanda ölümsüzleştir ve efsanevi statüye ulaş!
+👑 LEGEND (Day 30): Immortality. Solidify your memory with mixed tests and attain legendary status for the skill!
 
-📔 Grimoire (Kadim Kitaplık)
+📔 The Grimoire (Hall of Mastery)
 
-Bu sürümdeki en kutsal odadır! HUD üzerindeki Grimoire (📔) butonu, artık sadece 5 aşamanın tamamını bitirdiğin efsanevi yetenekleri sergiler.
+The most sacred chamber of the dungeon! The Grimoire (📔) tab exclusively displays the legendary skills you have fully conquered across all 5 stages.
 
-Kalıcı Zafer: Mastered seviyesine ulaşan yeteneklerin burada altın bir mühürle sonsuza dek saklanır.
+Permanent Glory: Skills that reach the "Mastered" status are eternally sealed here with a golden crest.
 
-Akademik Arşiv: Bu oda senin mühendislik birikiminin ve zindanda kazandığın toprakların fiziksel kanıtıdır.
+Academic Archive: This chamber serves as physical proof of your engineering wisdom and the academic territories you have successfully conquered.
 
-🏆 Karakter Gelişimi ve Rütbeler
+🏆 Character Progression & Ranks
 
-Kazandığın her XP, seni Mühendislik Tanrılığına giden yolda bir üst basamağa taşır:
+Every XP you earn pushes you one step closer to Engineering Godhood:
 
-🧙‍♂️ Kayıp Stajyer: Zindanın kapısında yolunu arayan yolcu.
+🧙‍♂️ Lost Intern: A wanderer seeking the dungeon's entrance.
 
-📜 Kod Çırağı: İlk algoritmalarını başarıyla mühürleyen.
+📜 Code Apprentice: Successfully sealed their first algorithm.
 
-⚔️ Sistem Savaşçısı: Karmaşık sistemlere kafa tutan.
+⚔️ System Warrior: Challenges complex systems head-on.
 
-🧪 Algoritma Simyacısı: Formülleri altına dönüştüren.
+🧪 Algorithm Alchemist: Transmutes raw formulas into gold.
 
-🛡️ Veri Muhafızı: Bilgiyi savunan ve koruyan.
+🛡️ Data Guardian: Defends and preserves critical knowledge.
 
-🗡️ Siber Şövalye: Dijital dünyada adalet dağıtan.
+🗡️ Cyber Knight: Delivers justice in the digital realm.
 
-⚙️ Mekanik Büyücü: Fizik kurallarına hükmeden.
+⚙️ Mechanic Mage: Bends the laws of physics to their will.
 
-🌌 Kuantum Üstadı: Teorinin en derin katmanlarına inmiş mühendis.
+🌌 Quantum Master: An engineer who has descended into the deepest layers of theory.
 
-🐲 Ejder Mühendis: Zindanın tüm canavarlarını dize getirmiş, bilginin nihai lideri!
+🐲 Dragon Engineer: The ultimate leader of knowledge, having brought every monster in the dungeon to its knees!
 
-⚙️ Teknik Özellikler
+⚙️ Technical Specifications
 
-👾 Retro Atmosfer: Dinamik 8-bit müzikler ve uçuşan sihirli tozlar eşliğinde ders çalışma keyfi.
+👾 Retro Atmosphere: Experience a gamified study session with dynamic, adaptive 8-bit music and floating magical particles.
 
-🧬 Yetenek Ağacı: Hangi konuda ne kadar ustalaştığını anlık % göstergeleriyle takip et.
+🧬 Skill Tree: Track your mastery levels with real-time circular percentage indicators.
 
-💾 Veri Kristali: İlerlemeni bir kristale mühürleyip (yedekleyip) farklı cihazlara ışınla.
+💾 Data Crystal: Seal (export) your progress into a crystal string and teleport (import) it across different devices instantly.
 
-📲 PWA Desteği: Tarayıcıdan "Uygulamayı Yükle" diyerek zindanı ana ekranına taşı ve tam ekran bir App deneyimi yaşa.
+📲 PWA Support: Use "Add to Home Screen" on your mobile browser to carry the dungeon in your pocket as a full-screen, native-like App.
 
-"Zindan dürüst savaşçıları sever. Görevi gerçekten bitirmeden parşömeni mühürleme! Yolun açık olsun Ejder Mühendis!" ⚔️🔥
+"The dungeon favors honest warriors. Do not seal the parchment without truly completing the quest! May your path be clear, Dragon Engineer!" ⚔️🔥
