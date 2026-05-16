@@ -227,7 +227,7 @@
             </div>
             
             <div id="courseManageList"></div>
-            <div style="text-align:center; color:#555; font-size:0.75rem; margin-top:15px; margin-bottom:5px;" class="mono-font">v2.2.0 - 04:00 AM Reset</div>
+            <div style="text-align:center; color:#555; font-size:0.75rem; margin-top:15px; margin-bottom:5px;" class="mono-font">v2.3.0 - Safe Load Edition</div>
             <button class="close-btn" onclick="closeModal('manageModal')">CLOSE</button>
         </div>
     </div>
@@ -344,7 +344,6 @@
         // 04:00 AM CALCULATION
         function getTarget4AM(daysForward) {
             let d = new Date();
-            // If before 04:00 AM, treat it as the previous day.
             if (d.getHours() < 4) d.setDate(d.getDate() - 1);
             d.setDate(d.getDate() + daysForward);
             d.setHours(4, 0, 0, 0);
@@ -436,7 +435,6 @@
                     l.innerHTML = '';
                     mastered.forEach(mItem => {
                         const cData = state.courses[mItem.c] || {n:mItem.c, e:'📜'};
-                        // Add particle effect logic for Grimoire entries
                         let parts = '';
                         for(let i=0; i<6; i++) {
                             parts += `<div class="g-particle" style="left:${Math.random()*90+5}%; bottom:${Math.random()*20}%; animation-delay:${Math.random()*3}s"></div>`;
@@ -454,7 +452,22 @@
         const closeModal = (id) => document.getElementById(id).style.display='none';
         const delCourse = (k) => { if(confirm('Delete?')) { delete state.courses[k]; save(); openModal('manageModal'); } };
         const exportData = () => { const code = btoa(encodeURIComponent(JSON.stringify(state))); const t = document.createElement("textarea"); document.body.appendChild(t); t.value=code; t.select(); document.execCommand("copy"); document.body.removeChild(t); alert("Crystal Copied!"); };
-        const importData = () => { try { state=JSON.parse(decodeURIComponent(atob(prompt("Paste Crystal Code:")))); save(); location.reload(); } catch(e){alert("Error!");} };
+        
+        // --- IMPROVED IMPORT FUNCTION ---
+        const importData = () => { 
+            const input = prompt("Paste Crystal Code here:");
+            if (!input) return;
+            try { 
+                const parsed = JSON.parse(decodeURIComponent(atob(input.trim())));
+                state = { ...state, ...parsed }; // Merges old save structure with new state structure seamlessly
+                save(); 
+                alert("Data Crystal loaded successfully! 🐲");
+                location.reload(); 
+            } catch(e) {
+                console.error(e);
+                alert("Error: Invalid Crystal Code! Please make sure you copied the entire code without missing any characters.");
+            } 
+        };
 
         function render() {
             const r = getRank(); document.getElementById('rankLabel').innerText = r.name; document.getElementById('avatar').innerText = r.icon;
@@ -484,7 +497,6 @@
             state.db.forEach(item => {
                 const cData = state.courses[item.c] || {n:item.c, e:'📜'};
                 const pct = (item.tasks.filter(t=>t.done).length/5)*100;
-                // Add Undo Button (↺) next to the trash bin if at least one task is done
                 const undoBtnHtml = pct > 0 ? `<button style="border:none;background:none;color:var(--gold);opacity:0.8;font-size:1.4rem;cursor:pointer;margin-right:5px;" onclick="undoQuest(${item.id})" title="Undo Last Quest">↺</button>` : '';
 
                 sl.innerHTML += `<div class="skill-item" style="${pct === 100 ? 'opacity:0.5; border-color:var(--gold);' : ''}"><div style="display:flex;align-items:center;gap:12px;flex:1"><div style="font-size:1.8rem">${pct === 100 ? '📔' : cData.e}</div><div><div style="font-weight:bold;color:#fff;font-size:1rem">${item.t}</div><div style="font-size:0.7rem;color:var(--accent);font-weight:bold" class="mono-font">${cData.n}</div></div></div><div style="display:flex;align-items:center;gap:8px"><div class="ring-container"><svg width="46" height="46"><circle stroke="#222" stroke-width="4" fill="transparent" r="20" cx="23" cy="23"/><circle stroke="${pct === 100 ? 'var(--gold)' : 'var(--accent)'}" stroke-width="4" fill="transparent" r="20" cx="23" cy="23" style="stroke-dasharray:126; stroke-dashoffset:${126-(pct/100)*126}; transition:1s steps(10)"/></svg><div class="ring-text mono-font" style="color:${pct === 100 ? 'var(--gold)' : 'white'}">%${Math.round(pct)}</div></div>${undoBtnHtml}<button style="border:none;background:none;color:red;opacity:0.3;font-size:1.2rem;cursor:pointer" onclick="if(confirm('Delete?')){state.db=state.db.filter(i=>i.id!==${item.id});save()}" title="Delete Skill">🗑️</button></div></div>`;
